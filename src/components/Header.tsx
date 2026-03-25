@@ -5,6 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 const Header: React.FC = () => {
   const [time, setTime] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [showTime, setShowTime] = useState<boolean>(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -30,6 +31,18 @@ const Header: React.FC = () => {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Auto-cycle between location and time on mobile (no hover available)
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) return;
+
+    const cycleInterval = setInterval(() => {
+      setShowTime(prev => !prev);
+    }, 3000);
+
+    return () => clearInterval(cycleInterval);
   }, []);
 
   return (
@@ -59,7 +72,7 @@ const Header: React.FC = () => {
             
             <div className="relative flex items-center gap-2 font-semibold tracking-wide">
               <div className="relative h-5 overflow-hidden pointer-events-none select-none">
-                <div className="flex flex-col transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] transform group-hover:-translate-y-5">
+                <div className={`flex flex-col transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] transform md:group-hover:-translate-y-5 ${showTime ? '-translate-y-5' : 'translate-y-0'}`}>
                   <span className="h-5 flex items-center dark:text-white/95 text-[#111] font-bold whitespace-nowrap">
                     <span className="md:hidden">Dhaka</span>
                     <span className="hidden md:inline">Dhaka, Bangladesh</span>
@@ -69,7 +82,7 @@ const Header: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <ArrowUp size={14} className="opacity-40 dark:text-white text-[#111] shrink-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] rotate-45 group-hover:rotate-0" />
+              <ArrowUp size={14} className={`opacity-40 dark:text-white text-[#111] shrink-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] md:rotate-45 md:group-hover:rotate-0 ${showTime ? 'rotate-0' : 'rotate-45'}`} />
             </div>
           </div>
 

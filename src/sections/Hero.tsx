@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Calendar } from 'lucide-react';
 import profileImg from '../assets/profile.jpeg';
-import resumePdf from '../assets/Curriculum_Vitae__labib_.pdf';
+const resumePdf = '/Curriculum_Vitae__labib_.pdf';
 
 const Twitter = ({ size = 24, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}><path d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"/></svg>
