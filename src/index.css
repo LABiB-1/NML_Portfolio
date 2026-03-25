@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { 
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    @apply bg-portfolio-bg text-portfolio-text font-sans antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .grad-text {
+    @apply bg-clip-text text-transparent;
+  }
+  .grad-pink-gold {
+    background-image: linear-gradient(to right, theme('colors.portfolio.pink'), theme('colors.portfolio.gold'), theme('colors.portfolio.green'));
+  }
+  .grad-blue-green {
+    background-image: linear-gradient(to right, theme('colors.portfolio.blue'), theme('colors.portfolio.green'));
+  }
+  .grad-gold {
+    background-image: linear-gradient(to right, theme('colors.portfolio.gold'), theme('colors.portfolio.pink'), theme('colors.portfolio.green'));
+  }
+  .grad-green {
+    background-image: linear-gradient(to right, theme('colors.portfolio.green'), theme('colors.portfolio.blue'), theme('colors.portfolio.pink'));
+  }
+  .grad-me {
+    background-image: linear-gradient(to right, theme('colors.portfolio.blue'), theme('colors.portfolio.green'), theme('colors.portfolio.gold'));
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme('colors.portfolio.bg');
+  }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.portfolio.border');
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.portfolio.muted');
+  }
+
+  .blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(100,0,255,0.5) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(100px);
+    animation: moveBlob 20s infinite alternate ease-in-out;
+    z-index: -1;
+    pointer-events: none;
+    top: 10%;
+    left: 10%;
+  }
+
+  @keyframes moveBlob {
+    from { transform: translate(-10%, -10%) scale(1); }
+    to { transform: translate(20%, 15%) scale(1.1); }
+  }
+}
