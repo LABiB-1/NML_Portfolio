@@ -20,15 +20,15 @@ const About: React.FC = () => {
       </div>
       
       <div className="text-center leading-[1.9] max-w-3xl mx-auto space-y-4">
-        <p className="text-[1.05rem] dark:text-white/90 text-[#111] font-medium">Hey there, I’m Labib — a Computer Science student.</p>
+        <p className="text-[1.05rem] dark:text-white/90 text-[#111] font-medium">Hey there, I’m Labib a Computer Science student.</p>
         <p className="dark:text-white/80 text-[#333]">
           I’m exploring the world of AI and computer science, building a strong foundation while continuously improving my skills and mindset. I believe in learning something new every day and turning that knowledge into meaningful outcomes.
         </p>
         <p className="dark:text-white/80 text-[#333]">
-          Right now, I’m focused on growing — both technically and personally — with an interest in technologies. I enjoy understanding how technology can solve real problems and create simple, human-centered digital experiences.
+          Right now, I’m focused on growing both technically and personally with an interest in technologies. I enjoy understanding how technology can solve real problems and create simple, human-centered digital experiences.
         </p>
         <p className="dark:text-white/80 text-[#333]">
-          More than anything, I’m driven by the idea of building a productive life — one that gives me freedom over time, money, and location.
+          More than anything, I’m driven by the idea of building a productive life one that gives me freedom over time, money, and location.
         </p>
         <p className="dark:text-white/80 text-[#333]">
           I’m still at the beginning of my journey, but I’m committed to learning, improving, and becoming better every single day.
