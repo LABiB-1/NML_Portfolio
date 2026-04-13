@@ -1,4 +1,5 @@
 import React from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from './context/ThemeContext';
 import ParticleBackground from './components/ParticleBackground';
 import Header from './components/Header';
@@ -42,6 +43,7 @@ const App: React.FC = () => {
 
         <Footer />
         <Dock />
+        <SpeedInsights />
       </div>
     </ThemeProvider>
   );
