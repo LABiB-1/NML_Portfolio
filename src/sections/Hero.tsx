@@ -2,7 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Calendar } from 'lucide-react';
 import profileImg from '../assets/profile.jpeg';
-const resumePdf = 'https://drive.google.com/file/d/1THtKYxxMhz8wqMa2J8aGHhGjPrsHPJOl/view?usp=sharing';
+import FloatingGeometry from '../components/FloatingGeometry';
+import MagneticButton from '../components/MagneticButton';
+import TextReveal from '../components/TextReveal';
+const resumePdf = 'https://drive.google.com/file/d/1FQzTfcSeXea1PnotJwlbj37eOQ5NaVJ8/view?usp=sharing';
 
 const Twitter = ({ size = 24, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}><path d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"/></svg>
@@ -19,17 +22,22 @@ const Github = ({ size = 24, className = '' }) => (
 const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center max-w-4xl w-full mx-auto pt-24 pb-8 px-4 relative z-10">
-      <div className="blob"></div>
+      <FloatingGeometry />
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.7 }}
         className="relative inline-block mb-6"
       >
-        <div className="w-40 h-40 rounded-full border-[5px] border-white bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex items-center justify-center font-display font-extrabold text-white text-5xl overflow-hidden shadow-2xl">
-          <img src={profileImg} alt="Najib Mahmud Labib" className="w-full h-full object-cover" />
+        <div className="relative w-40 h-40 mx-auto">
+          <div className="absolute inset-[-15px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 blur-xl animate-[glow-pulse_4s_ease-in-out_infinite] preserve-3d">
+            <div className="absolute top-0 left-1/2 w-4 h-4 bg-indigo-400 rounded-full blur-md shadow-[0_0_20px_#6366f1] animate-[orbit-dot_20s_linear_infinite]" />
+          </div>
+          <div className="w-full h-full rounded-full border-[5px] border-white bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex items-center justify-center font-display font-extrabold text-white text-5xl overflow-hidden shadow-2xl relative z-10">
+            <img src={profileImg} alt="Najib Mahmud Labib" className="w-full h-full object-cover" />
+          </div>
         </div>
-        <span className="absolute bottom-1 right-1 text-4xl bg-white/10 rounded-full backdrop-blur-sm p-1">👋</span>
+        <span className="absolute bottom-1 right-1 text-4xl bg-white/10 rounded-full backdrop-blur-sm p-1 z-20">👋</span>
       </motion.div>
 
       <motion.div 
@@ -41,14 +49,16 @@ const Hero: React.FC = () => {
         Designing a Life of Freedom, Focus, and Growth
       </motion.div>
 
-      <motion.h1 
+      <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.7 }}
-        className="font-display text-[clamp(1.15rem,2.8vw,1.7rem)] font-normal leading-[1.6] max-w-[820px] mb-10 px-4 dark:text-white text-black"
+        className="font-display text-[clamp(1.15rem,2.8vw,1.7rem)] font-bold leading-[1.6] max-w-[820px] mb-10 px-4 dark:text-white text-black"
       >
-        <strong>Hi, I’m Najib Mahmud Labib</strong>, a Computer Science student, <strong>AI enthusiast</strong>, and lifelong learner focused on building a productive life with <em className="italic dark:text-white/90 text-black/90">time, money, and location freedom.</em>
-      </motion.h1>
+        <TextReveal splitBy="word" delay={0.4} as="h1" className="inline" interactive>
+          Hi, I’m Najib Mahmud Labib, a Computer Science student, AI enthusiast, and lifelong learner focused on building a productive life with time, money, and location freedom.
+        </TextReveal>
+      </motion.div>
 
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -56,35 +66,45 @@ const Hero: React.FC = () => {
         transition={{ delay: 0.55, duration: 0.7 }}
         className="flex flex-wrap items-center justify-center gap-3 md:gap-4 relative z-20 mb-12"
       >
-        <a href="#contact" className="text-decoration-none focus:outline-none outline-none">
-          <button className="h-12 px-6 rounded-xl dark:bg-[#6366f1]/20 bg-[#6366f1]/10 backdrop-blur-xl border dark:border-[#6366f1]/30 border-[#6366f1]/20 text-[#6366f1] dark:text-[#818cf8] font-bold flex items-center gap-2 hover:bg-[#6366f1]/20 dark:hover:bg-[#6366f1]/30 transition-all shadow-[0_8px_30px_rgba(99,102,241,0.25)] dark:shadow-[0_8px_30px_rgba(99,102,241,0.15)] hover:scale-[1.02]">
-            Let's Talk
-            <Calendar size={16} />
-          </button>
-        </a>
-        <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded-xl dark:bg-white/5 bg-white/30 backdrop-blur-xl border border-white/50 dark:border-white/10 dark:text-white text-black font-medium flex items-center gap-2 hover:bg-white/50 dark:hover:bg-white/10 hover:border-white/70 dark:hover:border-white/20 transition-all shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:scale-[1.02]">
-          View Resume
-          <FileText size={16} className="ml-0.5" />
-        </a>
+        <MagneticButton>
+          <a href="#contact" className="text-decoration-none focus:outline-none outline-none block">
+            <button className="h-12 px-6 rounded-xl dark:bg-[#6366f1]/20 bg-[#6366f1]/10 backdrop-blur-xl border dark:border-[#6366f1]/30 border-[#6366f1]/20 text-[#6366f1] dark:text-[#818cf8] font-bold flex items-center gap-2 hover:bg-[#6366f1]/20 dark:hover:bg-[#6366f1]/30 transition-all shadow-[0_8px_30px_rgba(99,102,241,0.25)] dark:shadow-[0_8px_30px_rgba(99,102,241,0.15)] hover:scale-[1.02]">
+              Let's Talk
+              <Calendar size={16} />
+            </button>
+          </a>
+        </MagneticButton>
+        <MagneticButton>
+          <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="h-12 px-6 rounded-xl dark:bg-white/5 bg-white/30 backdrop-blur-xl border border-white/50 dark:border-white/10 dark:text-white text-black font-medium flex items-center gap-2 hover:bg-white/50 dark:hover:bg-white/10 hover:border-white/70 dark:hover:border-white/20 transition-all shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:scale-[1.02] block">
+            View Resume
+            <FileText size={16} className="ml-0.5" />
+          </a>
+        </MagneticButton>
         <div className="flex gap-2 ml-1">
-          <a href="http://www.linkedin.com/in/najib-mahmud-labib/" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-            <Linkedin size={18} />
-            <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
-              LinkedIn
-            </span>
-          </a>
-          <a href="https://github.com/LABiB-1" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-            <Github size={18} />
-            <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
-              GitHub
-            </span>
-          </a>
-          <a href="https://x.com/NajibMahmud_" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-            <Twitter size={18} />
-            <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
-              Twitter
-            </span>
-          </a>
+          <MagneticButton strength={0.5}>
+            <a href="http://www.linkedin.com/in/najib-mahmud-labib/" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+              <Linkedin size={18} />
+              <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
+                LinkedIn
+              </span>
+            </a>
+          </MagneticButton>
+          <MagneticButton strength={0.5}>
+            <a href="https://github.com/LABiB-1" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+              <Github size={18} />
+              <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
+                GitHub
+              </span>
+            </a>
+          </MagneticButton>
+          <MagneticButton strength={0.5}>
+            <a href="https://x.com/NajibMahmud_" target="_blank" rel="noopener noreferrer" className="group relative w-11 h-11 rounded-[12px] dark:bg-white/5 bg-white/40 backdrop-blur-xl dark:border-white/10 border-white/50 border flex items-center justify-center dark:text-white/60 text-black transition-all hover:-translate-y-1 dark:hover:text-white/90 hover:text-[#000] dark:hover:bg-white/10 hover:bg-white/60 dark:hover:border-white/20 hover:border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+              <Twitter size={18} />
+              <span className="absolute -top-11 left-1/2 -translate-x-1/2 dark:bg-white/10 bg-white/50 backdrop-blur-xl dark:border-white/20 border-white/60 border dark:text-white text-black font-sans font-semibold tracking-wide text-[0.7rem] px-3 py-1.5 rounded-[8px] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 whitespace-nowrap pointer-events-none shadow-[0_8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-50">
+                Twitter
+              </span>
+            </a>
+          </MagneticButton>
         </div>
       </motion.div>
     </section>

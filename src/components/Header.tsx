@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Sun, Moon } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
 const Header: React.FC = () => {
@@ -46,7 +47,12 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center w-full pointer-events-none">
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      className="fixed top-0 left-0 right-0 z-[100] flex justify-center w-full pointer-events-none"
+    >
       <div 
         className={`flex justify-between items-center w-full px-4 md:px-8 py-5 md:py-7 pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isScrolled ? 'max-w-full' : 'max-w-4xl mx-auto'
@@ -99,7 +105,7 @@ const Header: React.FC = () => {
           </button>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

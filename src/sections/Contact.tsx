@@ -1,5 +1,8 @@
 import React from 'react';
 import { ArrowDownRight } from 'lucide-react';
+import TextReveal from '../components/TextReveal';
+import MagneticButton from '../components/MagneticButton';
+import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
   return (
@@ -13,28 +16,38 @@ const Contact: React.FC = () => {
       </div>
 
       <a href="mailto:najibmahmudlabib.11@gmail.com" className="group block cursor-pointer outline-none">
-        <div className="font-display font-light leading-[1.1] tracking-[-0.02em] text-[clamp(3.5rem,10vw,7rem)] dark:text-white/90 text-[#111] transition-all duration-500 group-hover:-translate-y-2 group-hover:dark:text-white group-hover:text-[#000]">
+        <TextReveal as="div" className="justify-center font-display font-light leading-[1.1] tracking-[-0.02em] text-[clamp(3.5rem,10vw,7rem)] dark:text-white/90 text-[#111] transition-all duration-500 group-hover:-translate-y-2 group-hover:dark:text-white group-hover:text-[#000]">
           Let's work
-        </div>
-        <div className="font-display font-light leading-[1.1] tracking-[-0.02em] text-[clamp(3.5rem,10vw,7rem)] dark:text-white/25 text-[#aaa] transition-all duration-500 dark:group-hover:text-white group-hover:text-[#111] group-hover:translate-x-4">
+        </TextReveal>
+        <TextReveal as="div" delay={0.2} className="justify-center font-display font-light leading-[1.1] tracking-[-0.02em] text-[clamp(3.5rem,10vw,7rem)] dark:text-white/25 text-[#aaa] transition-all duration-500 dark:group-hover:text-white group-hover:text-[#111] group-hover:translate-x-4">
           together
-        </div>
+        </TextReveal>
         
         <div className="flex justify-center mt-6">
-          <div className="w-16 h-16 rounded-full border dark:border-white/20 border-white/50 dark:bg-white/[0.03] bg-white/30 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] flex items-center justify-center transition-all duration-500 dark:group-hover:bg-white group-hover:bg-[#111] group-hover:text-white dark:group-hover:text-black group-hover:scale-110">
-            <ArrowDownRight size={24} className="transition-transform duration-500 group-hover:-rotate-90" />
-          </div>
+          <MagneticButton>
+            <div className="relative w-16 h-16">
+              <div className="absolute inset-[-10px] rounded-full border border-indigo-500/20 animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="w-16 h-16 rounded-full border dark:border-white/20 border-white/50 dark:bg-white/[0.03] bg-white/30 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] flex items-center justify-center transition-all duration-500 dark:group-hover:bg-white group-hover:bg-[#111] group-hover:text-white dark:group-hover:text-black group-hover:scale-110 relative z-10">
+                <ArrowDownRight size={24} className="transition-transform duration-500 group-hover:-rotate-90" />
+              </div>
+            </div>
+          </MagneticButton>
         </div>
       </a>
 
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: false, margin: '-10% 0px -10% 0px' }}
+        transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      >
         <p className="dark:text-white/60 text-[#555] text-[0.95rem] max-w-sm mx-auto leading-[1.7]">
           Have an idea in mind? I'd love to hear about it. Let's create something exceptional together.
         </p>
         <div className="text-[0.75rem] tracking-[0.15em] uppercase dark:text-white/35 text-[#888] mt-3">
           CONTRACT@NAJIBMAHMUDLABIB
         </div>
-      </div>
+      </motion.div>
 
     </section>
   );

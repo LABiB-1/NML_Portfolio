@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import TextReveal from '../components/TextReveal';
+import TiltCard from '../components/TiltCard';
 
 const blogPosts = [
   {
@@ -49,12 +51,12 @@ const Blog: React.FC = () => {
               </div>
               Blog
             </div>
-            <h2 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] font-bold leading-tight dark:text-white text-[#111]">
-              Thoughts, ideas &amp; <span className="grad-text grad-pink-gold">insights</span>
-            </h2>
-            <p className="dark:text-white/45 text-[#555] text-base mt-2">
+            <TextReveal as="h2" gradients={{ insights: 'grad-text grad-pink-gold' }} className="font-display text-[clamp(1.8rem,4vw,2.5rem)] font-bold leading-tight dark:text-white text-[#111]">
+              Thoughts, ideas & insights
+            </TextReveal>
+            <TextReveal as="p" delay={0.2} className="dark:text-white/45 text-[#555] text-base mt-2">
               I write about web development, programming, and building a better, more productive life—sharing my journey, lessons, and growth along the way.
-            </p>
+            </TextReveal>
           </div>
           <button className="inline-flex items-center gap-2 dark:bg-white/[0.03] bg-white/30 backdrop-blur-2xl border dark:border-white/10 border-white/40 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] dark:text-white text-[#111] px-6 py-2.5 rounded-full font-display font-semibold text-[0.9rem] w-fit transition-transform hover:translate-x-1 cursor-default dark:hover:bg-white/10 hover:bg-white/50">
             View all posts
@@ -84,24 +86,26 @@ const Blog: React.FC = () => {
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
-                    <div 
-                      className="h-[140px] w-full flex items-center justify-center text-4xl"
-                      style={{ background: post.bg }}
-                    >
-                      {post.icon}
-                    </div>
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 text-[0.7rem] dark:text-white/50 text-[#555] mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full border dark:border-white/50 border-black/30"></span> {post.time} <span className="mx-1">•</span> <span className="dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded-full dark:text-white/70 text-[#555]">{post.tag}</span>
+                    <TiltCard tiltAmount={10} className="w-full h-full">
+                      <div 
+                        className="h-[140px] w-full flex items-center justify-center text-4xl"
+                        style={{ background: post.bg }}
+                      >
+                        {post.icon}
                       </div>
-                      <div className="flex flex-col gap-2 mt-1">
-                        <div className="w-10/12 h-3.5 rounded-full dark:bg-white/20 bg-black/15 animate-pulse"></div>
-                        <div className="flex flex-col gap-1.5 mt-1">
-                          <div className="w-full h-2 rounded-full dark:bg-white/10 bg-black/10 animate-pulse delay-75"></div>
-                          <div className="w-4/5 h-2 rounded-full dark:bg-white/10 bg-black/10 animate-pulse delay-100"></div>
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 text-[0.7rem] dark:text-white/50 text-[#555] mb-2">
+                          <span className="w-1.5 h-1.5 rounded-full border dark:border-white/50 border-black/30"></span> {post.time} <span className="mx-1">•</span> <span className="dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded-full dark:text-white/70 text-[#555]">{post.tag}</span>
+                        </div>
+                        <div className="flex flex-col gap-2 mt-1">
+                          <div className="w-10/12 h-3.5 rounded-full dark:bg-white/20 bg-black/15 animate-pulse"></div>
+                          <div className="flex flex-col gap-1.5 mt-1">
+                            <div className="w-full h-2 rounded-full dark:bg-white/10 bg-black/10 animate-pulse delay-75"></div>
+                            <div className="w-4/5 h-2 rounded-full dark:bg-white/10 bg-black/10 animate-pulse delay-100"></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </TiltCard>
                   </motion.div>
                 );
               })}

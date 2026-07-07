@@ -1,5 +1,8 @@
 import React from 'react';
 import { LayoutTemplate, LineChart } from 'lucide-react';
+import TiltCard from '../components/TiltCard';
+import TextReveal from '../components/TextReveal';
+import { motion } from 'framer-motion';
 
 interface Project {
   id: number;
@@ -70,20 +73,44 @@ const Projects: React.FC = () => {
           </div>
           Projects
         </div>
-        <h2 className="font-display text-[clamp(1.8rem,4vw,2.5rem)] font-bold leading-tight dark:text-white text-[#111]">
-          Things I've <span className="grad-text grad-gold">built</span>
-        </h2>
-        <p className="dark:text-white/45 text-[#555] text-base mt-2 max-w-2xl mx-auto">
+        <TextReveal as="h2" gradients={{ built: 'grad-text grad-gold' }} className="justify-center font-display text-[clamp(1.8rem,4vw,2.5rem)] font-bold leading-tight dark:text-white text-[#111]">
+          Things I've built
+        </TextReveal>
+        <TextReveal as="p" delay={0.2} className="justify-center dark:text-white/45 text-[#555] text-base mt-2 max-w-2xl mx-auto">
           A selection of projects I've worked on, from open source tools to full-stack applications.
-        </p>
+        </TextReveal>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.15,
+            }
+          }
+        }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center"
+      >
         {projects.map((proj) => (
-          <div 
-            key={proj.id} 
-            className="group w-fit max-w-full mx-auto rounded-3xl border dark:border-white/10 border-white/40 dark:bg-white/[0.03] bg-white/30 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(255,255,255,0.02)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:border-white/60 dark:hover:border-white/20 flex flex-col relative overflow-hidden p-4 gap-4"
+          <motion.div
+            key={proj.id}
+            variants={{
+              hidden: { opacity: 0, y: 40, filter: 'blur(10px)', scale: 0.95 },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                filter: 'blur(0px)', 
+                scale: 1,
+                transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+              }
+            }}
+            className="w-full flex justify-center"
           >
+            <TiltCard tiltAmount={5} className="group w-fit max-w-full mx-auto rounded-3xl border dark:border-white/10 border-white/40 dark:bg-white/[0.03] bg-white/30 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(255,255,255,0.02)] transition-all duration-300 hover:border-white/60 dark:hover:border-white/20 flex flex-col relative overflow-hidden p-4 gap-4">
             <div className="flex items-center justify-between gap-3 relative z-10 w-full pt-1 px-1">
               <div className="flex items-center gap-2">
                 <div 
@@ -132,9 +159,10 @@ const Projects: React.FC = () => {
                 </span>
               ))}
             </div>
-          </div>
+            </TiltCard>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
